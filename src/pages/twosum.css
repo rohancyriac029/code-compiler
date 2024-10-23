@@ -1,0 +1,92 @@
+/* Ensure the page is split into two halves */
+.container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  /* Left pane (description part) */
+  .left-pane {
+    width: 50%;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light gray for contrast */
+    overflow-y: auto; /* Enables vertical scrolling */
+    scrollbar-width: thin; /* For Firefox */
+  }
+  
+  .left-pane::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .left-pane::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+  
+  .left-pane h1 {
+    font-size: 24px;
+    color: green;
+    margin-bottom: 10px;
+  }
+  
+  .left-pane .description {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .left-pane .description p {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  
+  .left-pane .example {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  
+  .left-pane .constraints {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .left-pane .constraints li {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .left-pane .checkbox {
+    margin-right: 10px;
+  }
+  
+  /* Right pane - content part */
+  .right-pane {
+    width: 50%;
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .right-pane p {
+    font-size: 18px;
+    color: #555;
+  }
+  /* Ensure image and heading are aligned next to each other */
+.image-heading-container {
+    display: flex;
+    align-items: center; /* Vertically center the image and text */
+    margin-bottom: 20px; /* Add some space below the heading */
+  }
+  
+  .top-left-image {
+    margin-right: 10px; /* Add some space between the image and text */
+    width: 50px; /* Adjust the size of the image */
+    height: auto; /* Maintain aspect ratio */
+  }
+    
