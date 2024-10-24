@@ -1,161 +1,18 @@
-.App {
-  display: flex;
-  height: 100vh; /* Full viewport height */
-}
-
-.container-one {
-  flex: 3; /* 25% of the width */
-  display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: center;
-  justify-content: center;
-  background-color: #0d0b0b;
-  position: relative;
-}
-.top-right-image {
-  position: absolute;
-  top: 10px; /* Adjust the top distance as needed */
-  left: 190px; /* Adjust the right distance as needed */
-  width: 50px; /* Adjust the size of the image */
-  height: auto; /* Maintain aspect ratio */
-}
-#hi {
-  background-color: #5a5757;  /* Widget background color */
-  border-radius: 12px;         /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Subtle shadow for depth */
-  padding: 20px;               /* Inner padding for content */
-  width: 80%;                  /* Width relative to parent container */
-  max-width: 300px;            /* Optional: Limit the maximum width */
-  margin-top: 50px;            /* Space from top of container */
-  /* Centering the content */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  position: absolute;  
-  top: 0;
-}
-
-#hi h1 {
-  margin: 0;
-  font-size: 24px;
-  color: white;
-}
-
-
-h1, p {
-  display: block;
-  margin: 10px 0;
-}
-
-#code {
-  color: white;
-}
-
-#ds {
-  color: rgb(95, 240, 33);
-}
-
-/* Styling for CODE.DS heading */
-.container-one h2 {
-  top: 0;
-  color: rgb(95, 240, 33);
-  position: absolute;
-}
-
-/* Subheading styling */
-.container-one .subheading {
-  color: rgb(95, 240, 33);
-  margin-bottom: 20px;
-  font-size: 18px;
+/* src/App.css */
+.app-container {
   text-align: center;
-}
-.container-one .sub {
-  color: white;
-  margin-bottom: 20px;
-  font-size: 18px;
-  text-align: center;
+  margin-top: 100px;
+  font-family: Arial, sans-serif;
 }
 
-/* Flexbox to align CODE. and DS side-by-side */
-.code-ds {
-  display: flex;
-  align-items: center;
-  gap: 5px; /* Optional: Space between CODE. and DS */
-}
-
-.container-two {
-  flex: 5; /* 75% of the width */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #716e6e89;
-  position: relative;
-}
-.lol {
-  border: 2px solid rgba(26, 24, 24, 0.507);
-  padding: 20px;  
-  border-radius: 20px;        /* Rounded corners */
-  color: rgb(247, 244, 244);  /* Text color */
-  background-color: #0d0b0b;  /* Background color */
-  width: 480px;               /* Box width */
-  height: 30px;              /* Box height (increase from 20px for centering) */
-  margin-left: 40px;
-  margin-right: 40px;
+.home-link {
+  color: blue;
+  text-decoration: none;
+  font-size: 20px;
   margin-top: 20px;
-  position: relative;
-  
-  /* Flexbox to center content */
-  display: flex;
-  align-items: center;        /* Center vertically */
-  justify-content: center;    /* Center horizontally */
-  text-align: center;         /* Center text */
+  display: inline-block;
 }
 
-.lol h3 {
-  margin: 0;                  /* Remove default margin */
-  font-size: 18px;            /* Adjust font size */
-}
-.lol button {
-  margin-left: 40px;
-  font-size: 13px;
-  color: rgb(97, 222, 14);
-  background-color: #60625f;
-  border-radius: 5px;
-  border: 2px solid #60625f;
-  padding: 10px 20px;        /* Add padding to make the button look better */
-  cursor: pointer;           /* Change cursor to pointer when hovering over the button */
-
-  /* Add shadow for the normal state */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Horizontal, Vertical, Blur, Color */
-  transition: box-shadow 0.2s ease, transform 0.2s ease; /* Smooth transition */
-}
-
-/* Add hover effect to make the shadow grow */
-.lol button:hover {
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
-}
-
-/* Add pressed effect */
-.lol button:active {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Reduce shadow for pressed effect */
-  transform: translateY(2px);               /* Simulate button being pressed down */
-}
-
-
-
-#outbox{
-  border: 2px solid rgba(247, 245, 245, 0.507);  /* White outline */
-  padding: 20px;            /* Padding inside the box */
-  border-radius: 20px;       /* Optional: rounded corners */
-  color: rgb(247, 244, 244);             /* Text color */
-  width: 600px;   
-  height: 500px;      /* Optional: limit the width of the box */
-  text-align: center;       /* Center the text inside the box */
-  margin-top: 120px; 
-  background-color: #403b3b7a;
-  overflow-y:auto ;
-  overflow-x: hidden;
-  align-items: center;
-  justify-content: center;
+.home-link:hover {
+  text-decoration: underline;
 }

@@ -1,44 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Editor from '@monaco-editor/react';
 import './twosum.css';
-import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 import LeftImage from './logoo.png';
 
 const TwoSum = () => {
+  const [code, setCode] = useState('// Write your code here');
+  const [output, setOutput] = useState('');
+
+  // Handle code submission
+  const runCode = () => {
+    try {
+      const result = eval(code); // CAUTION: Avoid eval in production
+      setOutput(String(result));
+    } catch (err) {
+      setOutput(`Error: ${err.message}`);
+    }
+  };
+
+  // Clear the output
+  const clearOutput = () => {
+    setOutput('');
+  };
+
   return (
     <div className="container">
       {/* Left Pane */}
-      <div className="left-pane">
-        {/* Wrapper for the image and heading */}
+      <div className="left-pane-1">
         <div className="image-heading-container">
-          {/* Make the logo clickable with Link */}
-          <Link to="/">
+          <Link to="/home">
             <img src={LeftImage} alt="Top Left" className="top-left-image" />
           </Link>
           <h1>Two Sum</h1>
         </div>
-        
         <div className="description">
-          <p>Given an array of integers nums and an integer target, return the indices of two numbers such that they add up to target.</p>
-          <p>You may assume that each input would have exactly one solution, and you may not use the same element twice. You can return the answer in any order.</p>
+          <p>
+            Given an array of integers <strong>nums</strong> and an integer <strong>target</strong>, 
+            return the indices of two numbers such that they add up to target.
+          </p>
+          <p>
+            You may assume that each input would have exactly one solution, 
+            and you may not use the same element twice.
+          </p>
         </div>
-        
-        {/* Example 1 */}
+
+        {/* Examples */}
         <div className="example">
           <h4>Example 1:</h4>
           <p>Input: nums = [2,7,11,15], target = 9</p>
           <p>Output: [0,1]</p>
-          <p>Explanation: Because nums[0] + nums[1] == 9, we return [0,1].</p>
         </div>
-
-        {/* Example 2 */}
         <div className="example">
           <h4>Example 2:</h4>
           <p>Input: nums = [3,2,4], target = 6</p>
           <p>Output: [1,2]</p>
-          <p>Explanation: Because nums[1] + nums[2] == 6, we return [1,2].</p>
         </div>
-
-        {/* Example 3 */}
         <div className="example">
           <h4>Example 3:</h4>
           <p>Input: nums = [3,3], target = 6</p>
@@ -47,19 +63,46 @@ const TwoSum = () => {
 
         {/* Constraints */}
         <ul className="constraints">
-          <li><input type="checkbox" className="checkbox" />2 ≤ nums.length ≤ 10</li>
-          <li><input type="checkbox" className="checkbox" />-10 ≤ nums[i] ≤ 10</li>
-          <li><input type="checkbox" className="checkbox" />-10 ≤ target ≤ 10</li>
+          <li>
+            <input type="checkbox" className="checkbox" />
+            <span>2 ≤ nums.length ≤ 10</span>
+          </li>
+          <li>
+            <input type="checkbox" className="checkbox" />
+            <span>-10 ≤ nums[i] ≤ 10</span>
+          </li>
+          <li>
+            <input type="checkbox" className="checkbox" />
+            <span>-10 ≤ target ≤ 10</span>
+          </li>
         </ul>
       </div>
 
-      {/* Right Pane */}
-      <div className="right-pane">
-        {/* Content for the right half can go here */}
-        <p>Placeholder for additional content.</p>
+      {/* Right Pane - Monaco Editor */}
+      <div className="right-pane-1">
+        <Editor
+          height="400px"
+          theme="vs-dark"
+          defaultLanguage="javascript"
+          value={code}
+          onChange={(value) => setCode(value || '')}
+          options={{
+            fontSize: 16,
+            minimap: { enabled: false },
+            scrollBeyondLastLine: false,
+          }}
+        />
+        <div className="button-container">
+          <button className="run-button" onClick={runCode}>Run</button>
+          <button className="clear-button" onClick={clearOutput}>Clear</button>
+        </div>
+        <div className="output-container">
+          <h4>Output:</h4>
+          <pre className="output">{output}</pre>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default TwoSum;
