@@ -5,22 +5,81 @@ import './twosum.css';
 import LeftImage from './logoo.png';
 
 const TwoSum = () => {
-  const [code, setCode] = useState('// Write your code here');
+  const [code, setCode] = useState(`function twoSum(nums, target) {
+    // Your implementation here
+}`);
   const [output, setOutput] = useState('');
+  const [executionStatus, setExecutionStatus] = useState('');
+  const [status, setStatus] = useState('');
+
+  // Test cases for validation
+  const testCases = [
+    { input: [2, 7, 11, 15], target: 9, expected: [0, 1] },
+    { input: [3, 2, 4], target: 6, expected: [1, 2] },
+    { input: [3, 3], target: 6, expected: [0, 1] },
+  ];
 
   // Handle code submission
   const runCode = () => {
+    setExecutionStatus('Running...');
+    setStatus(''); // Clear status for each run
+
     try {
-      const result = eval(code); // CAUTION: Avoid eval in production
-      setOutput(String(result));
-    } catch (err) {
-      setOutput(`Error: ${err.message}`);
+      // Validate that the user code contains a function named twoSum
+      if (!/function\s+twoSum\s*\(/.test(code)) {
+        throw new Error("You must define a function named 'twoSum'.");
+      }
+
+      // Create a function using the user's code
+      const func = new Function('nums', 'target', code + '\nreturn twoSum(nums, target);');
+
+      const results = testCases.map(({ input, target, expected }) => {
+        if (typeof func !== 'function') {
+          throw new Error('The user-defined function is not valid.');
+        }
+
+        const result = func(input, target);
+
+        // Ensure the result is defined
+        if (result === undefined) {
+          return { result, expected, isCorrect: false, input, target };
+        }
+
+        return {
+          result,
+          expected,
+          isCorrect: JSON.stringify(result) === JSON.stringify(expected),
+          input,
+          target
+        };
+      });
+
+      const allCorrect = results.every((r) => r.isCorrect);
+
+      // Determine the final output
+      if (allCorrect) {
+        setOutput(results.map(r => JSON.stringify(r.result)).join(', ')); // Join results if all correct
+        setStatus('All test cases passed!');
+      } else {
+        // Check for the first incorrect result
+        const incorrectResult = results.find(r => !r.isCorrect);
+        setOutput(`Failed: Expected ${JSON.stringify(incorrectResult.expected)}, but got ${JSON.stringify(incorrectResult.result)}`);
+        setStatus('Some test cases failed.');
+      }
+
+      setExecutionStatus('Success');
+    } catch (error) {
+      setOutput(`Error: ${error.message}`);
+      setExecutionStatus('Failed');
+      setStatus('Compilation Error');
     }
   };
 
   // Clear the output
   const clearOutput = () => {
     setOutput('');
+    setExecutionStatus('');
+    setStatus('');
   };
 
   return (
@@ -67,7 +126,7 @@ const TwoSum = () => {
             <input type="checkbox" className="checkbox" />
             <span>2 ≤ nums.length ≤ 10</span>
           </li>
-          <li>
+          < li>
             <input type="checkbox" className="checkbox" />
             <span>-10 ≤ nums[i] ≤ 10</span>
           </li>
@@ -99,6 +158,12 @@ const TwoSum = () => {
         <div className="output-container">
           <h4>Output:</h4>
           <pre className="output">{output}</pre>
+        </div>
+
+        {/* Status Tab */}
+        <div className={`status-tab ${executionStatus === 'Success' ? 'success' : 'failure'}`}>
+          <p>Execution Status: {executionStatus}</p>
+          {status && <p>Result Status: {status}</p>}
         </div>
       </div>
     </div>
